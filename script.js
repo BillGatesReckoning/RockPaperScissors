@@ -10,4 +10,14 @@ function getComputerChoice() {
     }
     return choice
 }
+
+function getHumanChoice() {
+    let choice = ""
+    while(choice != "Rock" && choice != "Paper" && choice != "Scissors") {
+        choice = prompt("Play Rock, Paper or Scissors")
+    }
+    return choice
+}
+
 console.log(getComputerChoice())
+console.log(getHumanChoice())
