@@ -1,4 +1,8 @@
 console.log("Hello world")
+
+let humanScore = 0
+let computerScore = 0
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3)
     let choice = "Paper"
