@@ -2,17 +2,24 @@ console.log("Hello world")
 
 let humanScore = 0
 let computerScore = 0
+const GAMEROUNDS = 5
+
+playGame()
+
+
 // Rock = 1 Paper = 2 Scissors = 3
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3)
     let choice = 1
     if(randomNumber === 0) {
-        choice = 2
+        console.log("Paper")
+        return 2
     }
     else if(randomNumber === 1) {
-        choice = 3
+        console.log("Scissors")
+        return 3
     }
-    console.log(choice)
+    console.log("Rock")
     return choice
 }
 
@@ -77,4 +84,17 @@ function playRound(humanChoice, computerChoice) {
     return
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()))
+function playGame() {
+    for (let i = 0; i < GAMEROUNDS; i++) {
+        playRound(getHumanChoice(), getComputerChoice())
+    }
+    if (humanScore === computerScore) {
+        console.log(`It's a tie! Human got ${humanScore} points and computer got ${computerScore} points.`)
+    }
+    else if (humanScore > computerScore) {
+        console.log(`Human won! Human got ${humanScore} points and computer got ${computerScore} points.`)
+    }
+    else {
+        console.log(`Computer won! Human got ${humanScore} points and computer got ${computerScore} points.`)
+    }
+}
