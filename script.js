@@ -20,7 +20,15 @@ function getHumanChoice() {
     let choice = ""
     choice = prompt("Play Rock, Paper or Scissors")
     console.log(choice)
-    return choice
+    switch (choice.toLowerCase()) {
+        case "rock":
+            return 1
+        case "paper":
+            return 2
+        case "scissors":
+            return 3
+    }
+    return 1
 }
 
 // Rock = 1 Paper = 2 Scissors = 3
