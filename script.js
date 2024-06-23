@@ -7,6 +7,7 @@ const GAMEROUNDS = 5
 const selectButtons = document.querySelector(".selectButtons");
 const resultDiv = document.querySelector(".results");
 const announcementText = document.querySelector("#winAnnouncement");
+const newGameButton = document.querySelector("#newGameButton");
 
 const humanScoreBoard = document.querySelector("#humanScore");
 const computerScoreBoard = document.querySelector("#computerScore");
@@ -23,6 +24,8 @@ selectButtons.addEventListener("click", (e) => {
             playRound(3, getComputerChoice());
     }
 })
+
+newGameButton.addEventListener("dblclick", () => {restartGame()})
 // Rock = 1 Paper = 2 Scissors = 3
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3)
@@ -110,6 +113,7 @@ function playRound(humanChoice, computerChoice) {
 
 function endGame() {
     selectButtons.style.display = "none";
+    newGameButton.style.display = "block";
     if (humanScore === computerScore) {
         announcementText.textContent = `It's a tie!`;
     }
@@ -119,4 +123,15 @@ function endGame() {
     else {
         announcementText.textContent = `Computer won!`;
     }
+}
+
+function restartGame() {
+        humanScore = 0;
+        computerScore = 0;
+        selectButtons.style.display = "block";
+        newGameButton.style.display = "none";
+        resultDiv.textContent = `Fun fact: There can't never be a tie in our game.`;
+        announcementText.textContent = ``;
+        humanScoreBoard.textContent = `HUMAN SCORE: ${humanScore}`;
+        computerScoreBoard.textContent = `COMPUTER SCORE: ${computerScore}`;
 }
