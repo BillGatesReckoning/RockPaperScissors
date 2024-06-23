@@ -6,6 +6,10 @@ const GAMEROUNDS = 5
 
 const selectButtons = document.querySelector(".selectButtons");
 const resultDiv = document.querySelector(".results");
+const announcementText = document.querySelector("#winAnnouncement");
+
+const humanScoreBoard = document.querySelector("#humanScore");
+const computerScoreBoard = document.querySelector("#computerScore");
 
 selectButtons.addEventListener("click", (e) => {
     switch(e.target.id){
@@ -93,20 +97,26 @@ function playRound(humanChoice, computerChoice) {
             }
         }
     }
-    return
+
+    humanScoreBoard.textContent = `HUMAN SCORE: ${humanScore}`;
+    computerScoreBoard.textContent = `COMPUTER SCORE: ${computerScore}`;
+
+    if (humanScore === 5 || computerScore === 5){
+        endGame();
+    };
+
+    return;
 }
 
-/*function playGame() {
-    for (let i = 0; i < GAMEROUNDS; i++) {
-        playRound(getHumanChoice(), getComputerChoice())
-    }
+function endGame() {
+    selectButtons.style.display = "none";
     if (humanScore === computerScore) {
-        console.log(`It's a tie! Human got ${humanScore} points and computer got ${computerScore} points.`)
+        announcementText.textContent = `It's a tie!`;
     }
     else if (humanScore > computerScore) {
-        console.log(`Human won! Human got ${humanScore} points and computer got ${computerScore} points.`)
+        announcementText.textContent = `Human won!`;
     }
     else {
-        console.log(`Computer won! Human got ${humanScore} points and computer got ${computerScore} points.`)
+        announcementText.textContent = `Computer won!`;
     }
-}*/
+}
