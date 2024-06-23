@@ -4,9 +4,21 @@ let humanScore = 0
 let computerScore = 0
 const GAMEROUNDS = 5
 
-playGame()
+const selectButtons = document.querySelector(".selectButtons");
+const resultDiv = document.querySelector(".results");
 
-
+selectButtons.addEventListener("click", (e) => {
+    switch(e.target.id){
+        case "rock":
+            playRound(1, getComputerChoice());
+            break;
+        case "paper":
+            playRound(2, getComputerChoice());
+            break;
+        case "scissors":
+            playRound(3, getComputerChoice());
+    }
+})
 // Rock = 1 Paper = 2 Scissors = 3
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3)
@@ -41,17 +53,17 @@ function getHumanChoice() {
 // Rock = 1 Paper = 2 Scissors = 3
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == computerChoice) {
-        console.log(`Tie!`)
+        resultDiv.textContent = `Tie!`;
     }
     else {
         if(humanChoice == 1) {
             switch (computerChoice) {
                 case 2:
-                    console.log(`Computer won. Paper beats rock.`)
+                    resultDiv.textContent = `Computer won. Paper beats rock.`;
                     computerScore++
                     break
                 case 3:
-                    console.log(`Human won. Rock beats scissors`)
+                    resultDiv.textContent = `Human won. Rock beats scissors.`;
                     humanScore++
                     break
             }
@@ -59,11 +71,11 @@ function playRound(humanChoice, computerChoice) {
         else if (humanChoice == 2) {
             switch (computerChoice) {
                 case 1:
-                    console.log(`Human won. Paper beats rock.`)
+                    resultDiv.textContent = `Human won. Paper beats rock.`;
                     humanScore++
                     break
                 case 3:
-                    console.log(`Computer won. Scissors beat paper`)
+                    resultDiv.textContent = `Computer won. Scissors beat paper.`;
                     computerScore++
                     break
             }
@@ -71,11 +83,11 @@ function playRound(humanChoice, computerChoice) {
         else {
             switch (computerChoice) {
                 case 1:
-                    console.log(`Computer won. Rock beats scissors.`)
+                    resultDiv.textContent = `Computer won. Rock beats scissors.`;
                     computerScore++
                     break
                 case 2:
-                    console.log(`Human won. Scissors beat paper`)
+                    resultDiv.textContent = `Human won. Scissors beat paper.`;
                     humanScore++
                     break
             }
@@ -84,7 +96,7 @@ function playRound(humanChoice, computerChoice) {
     return
 }
 
-function playGame() {
+/*function playGame() {
     for (let i = 0; i < GAMEROUNDS; i++) {
         playRound(getHumanChoice(), getComputerChoice())
     }
@@ -97,4 +109,4 @@ function playGame() {
     else {
         console.log(`Computer won! Human got ${humanScore} points and computer got ${computerScore} points.`)
     }
-}
+}*/
